@@ -21,7 +21,8 @@ const createUser = (req, res) => {
       email
     })
 
-    //newUser.setPassword(password);
+    //crypto function
+    newUser.setPassword(password);
 
     newUser.save()
     .then(()=>res.json('User added!'))
@@ -64,6 +65,22 @@ const login = (req, res) => {
         message: 'User not found.'
       });
     }
+    else {
+      if (user.validPassword(password)) {
+        res.status(201).send({
+          message: 'User Logged in',
+        })
+      }
+      else {
+        res.status(400).send({
+          message: 'Wrong Password'
+        })
+      }
+    }
+  })
+  return res
+ }
+ 
     // else {
     //   console.log(user);
       
@@ -84,8 +101,8 @@ const login = (req, res) => {
     //     })
     //   }
     // }
-  })
-  return res
-}
+//   })
+//   return res
+// }
 
 module.exports = { index, createUser, editUser, deleteUser, findOneUser, login }
