@@ -77,4 +77,14 @@ const findOneItem = (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 };
 
-module.exports = { index, createItem, editItem, deleteItem, findOneItem }
+//search by item category - work out how to do only partial words?????
+const searchByCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+    let items = await Item.find({ category: category });
+    res.json(items);
+  }
+  catch (err) { res.status(400).send('Error: ' + err); }
+}
+
+module.exports = { index, createItem, editItem, deleteItem, findOneItem, searchByCategory }
