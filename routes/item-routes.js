@@ -12,5 +12,4 @@ router.delete('/delete/:id', middleware.checkAdminToken, deleteItem); //routes t
 router.get('/:id', findOneItem);
 
 
-
 module.exports = router;

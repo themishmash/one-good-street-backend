@@ -87,4 +87,27 @@ const searchByCategory = async (req, res) => {
   catch (err) { res.status(400).send('Error: ' + err); }
 }
 
-module.exports = { index, createItem, editItem, deleteItem, findOneItem, searchByCategory }
+
+
+const searchByLocation = async (req, res) => {
+  const { postcode } = req.params;
+  try {
+    let items = await Item.find({ postcode: postcode });
+    res.json(items);
+  }
+  catch (err) { res.status(400).send('Error: ' + err); }
+}
+
+
+
+
+//this is search - using regex for any PARTIAL WORDS. use this for search category. 
+// const searchByCategory = async (req, res) => {
+//   const {category} = req.params;
+//   // const regexpress = new RegExp(`^${name}$`);
+//   Item.find({ "category": { "$regex": category, "$options": "i" }})
+//   .then(category => res.json(category))
+//   .catch(err => res.status(400).json('Error: ' + err));
+// }
+
+module.exports = { index, createItem, editItem, deleteItem, findOneItem, searchByCategory, searchByLocation }
