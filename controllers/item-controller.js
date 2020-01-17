@@ -35,6 +35,8 @@ const createItem = (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 }
 
+
+//admin functionality only
 const editItem = (req, res) => {
   Item.findById(req.params.id)
     .then(item => {
@@ -59,12 +61,13 @@ const editItem = (req, res) => {
 }
 
 
-
+//admin functionality only
 const deleteItem = (req, res) => {
   Item.findByIdAndDelete(req.params.id)
     .then(() => res.json('Item deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 };
+
 
 const findOneItem = (req, res) => {
   console.log("Item id: ", req.params.id);
