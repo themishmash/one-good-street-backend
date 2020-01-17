@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.use('/items', require('./item-routes'));
 router.use('/users', require('./user-routes'));
+router.use("/search", require("./search-routes"));
 
 
 // router.get("/", require("../controllers/index"));
