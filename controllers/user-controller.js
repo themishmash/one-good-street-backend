@@ -15,10 +15,9 @@ const index = async (req, res) => {
 
 const createUser = (req, res) => {
   console.log("Test...");
-  const { username, password, isAdmin, email } = req.body;
+  const { password, isAdmin, email } = req.body;
 
-    const newUser = new User({
-      username, 
+    const newUser = new User({ 
       password, 
       isAdmin, 
       email
@@ -37,7 +36,6 @@ const createUser = (req, res) => {
 const editUser = (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      user.username = req.body.username;
       user.setPassword(req.body.password);
       user.isAdmin = req.body.isAdmin;
       user.email = req.body.email;
@@ -68,8 +66,8 @@ const findOneUser = (req, res)=> {
 
 //admin login
 const login = async (req, res) => {
-  const {username, password} = await req.body;
-  User.findOne({username : username }, function(err, user) {
+  const {email, password} = await req.body;
+  User.findOne({email : email }, function(err, user) {
     if (user === null) {
       res.status(400).send({
         message: 'User not found.'
@@ -79,7 +77,7 @@ const login = async (req, res) => {
       console.log(user);
       
       if (user.validPassword(password)) {
-        let token = jwt.sign({username: username},
+        let token = jwt.sign({email: email},
           user.isAdmin? process.env.ADMIN_SECRET : process.env.TOKEN_SECRET,
           {expiresIn: '24h'})
 

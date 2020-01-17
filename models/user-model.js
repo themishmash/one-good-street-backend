@@ -7,7 +7,7 @@ const crypto = require('crypto');
 require('dotenv').config();
 
 const userSchema = new Schema({
-  username: 
+  email: 
   {
     type: String,
    
@@ -19,10 +19,6 @@ const userSchema = new Schema({
   isAdmin: 
   {
     type: Boolean,
-  },
-  email:
-  {
-    type: String,
   }
 },{
   timestamps: true
