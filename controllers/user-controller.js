@@ -15,12 +15,15 @@ const index = async (req, res) => {
 
 const createUser = (req, res) => {
   console.log("Test...");
-  const { password, isAdmin, email } = req.body;
+  const { firstName, lastName, email, password, isAdmin } = req.body;
 
     const newUser = new User({ 
+      firstName,
+      lastName,
+      email,
       password, 
-      isAdmin, 
-      email
+      isAdmin
+      
     })
 
     //crypto function
@@ -36,9 +39,12 @@ const createUser = (req, res) => {
 const editUser = (req, res) => {
   User.findById(req.params.id)
     .then(user => {
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
+      user.email = req.body.email;
       user.setPassword(req.body.password);
       user.isAdmin = req.body.isAdmin;
-      user.email = req.body.email;
+     
     
       user.save()
         .then(()=> res.json('User updated!'))

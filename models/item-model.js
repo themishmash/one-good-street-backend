@@ -13,7 +13,7 @@ const itemSchema = new Schema({
     phone: Number,
     address: String,
     email: String,
-    privacy: String,
+    privacy: Boolean,
     image: String,
     delivery: Boolean
 },
