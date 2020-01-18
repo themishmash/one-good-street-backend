@@ -1,0 +1,32 @@
+[
+  {
+  "firstName": "test",
+  "lastName": "test",
+  "email": "test@com.com",
+  "password": "test",
+  "isAdmin": false
+},
+{
+  "firstName": "michelle",
+  "lastName": "wong",
+  "email": "michelle@com.com",
+  "password": "michelle",
+  "isAdmin": true
+},
+{
+  "firstName": "molly",
+  "lastName": "madden",
+  "email": "molly@com.com",
+  "password": "test",
+  "isAdmin": true
+},
+{
+  "firstName": "fake",
+  "lastName": "fake",
+  "email": "fake@com.com",
+  "password": "fake",
+  "isAdmin": false
+}
+
+]
+
