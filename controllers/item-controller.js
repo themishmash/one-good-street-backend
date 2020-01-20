@@ -51,7 +51,7 @@ const editItem = (req, res) => {
       item.address = req.body.address;
       item.email = req.body.email;
       item.privacy = req.body.privacy;
-      item.delivery = req.body.privacy;
+      item.delivery = req.body.delivery;
 
       item.save()
         .then(()=> res.json('Item updated!'))
