@@ -36,7 +36,7 @@ const createItem = (req, res) => {
 }
 
 
-//admin functionality only
+//admin functionality only - working
 const editItem = (req, res) => {
   Item.findById(req.params.id)
     .then(item => {
