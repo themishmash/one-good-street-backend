@@ -92,6 +92,8 @@ const login = async (req, res) => {
           message: 'Authentication successful',
           token: token
         });
+
+      
       }
       else {
         res.status(400).send({
@@ -103,6 +105,9 @@ const login = async (req, res) => {
   return res
 }
 
+const dashboard = (req, res) => {
+  return res.status(200);
+}
 
 
 
@@ -112,4 +117,4 @@ const allUsers = async (req, res) => {
   return res;
 }
 
-module.exports = { index, createUser, editUser, deleteUser, findOneUser, login, allUsers }
+module.exports = { index, createUser, editUser, deleteUser, findOneUser, login, allUsers, dashboard }

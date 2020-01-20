@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const middleware = require('../routes/token_middleware');
 
-const { index, createUser, editUser, deleteUser, findOneUser, login } = require("../controllers/user-controller");
+const { index, createUser, editUser, deleteUser, findOneUser, login, dashboard } = require("../controllers/user-controller");
 
 
 
@@ -15,5 +15,8 @@ router.patch('/edit/:id', middleware.checkAdminToken, editUser) //this works and
 router.delete('/delete/:id',  middleware.checkAdminToken, deleteUser); //this works for non admin 
 router.get('/:id', middleware.checkAdminToken, findOneUser); //this works for non admin and admin
 router.post('/login', login);
+
+router.get('/dashboard', middleware.checkAdminToken, dashboard);
+
 
 module.exports = router;

@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm start",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "repository": "git@github.com:themishmash/one-good-street-backend.git",
