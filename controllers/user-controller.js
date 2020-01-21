@@ -80,7 +80,6 @@ const login = async (req, res) => {
       });
     }
     else {
-      console.log(user);
       
       if (user.validPassword(password)) {
         let token = jwt.sign({email: email},

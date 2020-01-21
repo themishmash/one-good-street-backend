@@ -12,14 +12,13 @@ let checkToken = (req, res, next) =>
   }
   if( token )
   {
-    console.log(token);
+    
     
     // Pass in the token and the secret key into verify()
     jwt.verify( token, process.env.TOKEN_SECRET, (err, decoded) =>
     {
       if( err )
       {
-        console.error(err);
         
         return res.json(
         {
@@ -46,10 +45,12 @@ let checkToken = (req, res, next) =>
 };
 let checkAdminToken = (req, res, next) =>
 {
+  
   // Express headers are auto converted to lowercase
   let token = req.headers['x-access-token'] ||
               req.headers['authorization'] || "";
   // An empty string allows the token to be treated as a string but will return false
+
   if( token.startsWith( 'Bearer ' ) )
   {
     // Remove Bearer from string
@@ -57,14 +58,13 @@ let checkAdminToken = (req, res, next) =>
   }
   if( token )
   {
-    console.log(token);
     
     // Pass in the token and the secret key into verify()
     jwt.verify( token, process.env.ADMIN_SECRET, (err, decoded) =>
     {
       if( err )
       {
-        console.error(err);
+        //console.error(err);
         
         return res.json(
         {
@@ -81,6 +81,7 @@ let checkAdminToken = (req, res, next) =>
   }
   else
   {
+    console.log('auth token not supplied')
     res.status(401)
     return res.json(
     {
