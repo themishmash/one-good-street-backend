@@ -81,6 +81,7 @@ let checkAdminToken = (req, res, next) =>
   }
   else
   {
+    res.status(401)
     return res.json(
     {
       success: false,
