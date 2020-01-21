@@ -30,6 +30,8 @@ const createItem = (req, res) => {
     delivery
   });
 
+  newItem.published = false;
+
   newItem.save()
     .then(() => res.json('Item added!'))
     .catch(err => res.status(400).json('Error: ' + err));
@@ -52,6 +54,7 @@ const editItem = (req, res) => {
       item.email = req.body.email;
       item.privacy = req.body.privacy;
       item.delivery = req.body.delivery;
+      item.published = req.body.published;
 
       item.save()
         .then(()=> res.json('Item updated!'))
