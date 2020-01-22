@@ -105,7 +105,9 @@ const login = async (req, res) => {
 }
 
 const dashboard = (req, res) => {
-  return res.status(200);
+  return res.status(200).send({
+    message: "Success"
+  });
 }
 
 
