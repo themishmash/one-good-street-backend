@@ -15,7 +15,8 @@ const itemSchema = new Schema({
     email: String,
     privacy: String,
     image: String,
-    delivery: Boolean
+    delivery: Boolean,
+    published: Boolean
 },
 {
     timestamps: true

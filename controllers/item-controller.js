@@ -2,12 +2,18 @@ const Item = require('../models/item-model');
 const mongoose = require('mongoose');
 
 const index = async (req, res) => {
-  const query = await Item.find({});
-  query instanceof mongoose.Query;
-  const docs = await query;
-  res.send(docs);
+  const query = await Item.find({}, function(err, datares) { 
+    if (err) {
+      res.send(404)
+    } else {
+      res.send(datares);
+    }
+    
+  });
+
 
   return res;
+
 }
 
 const createItem = (req, res) => {
@@ -33,7 +39,7 @@ const createItem = (req, res) => {
   newItem.published = false;
 
   newItem.save()
-    .then(() => res.json('Item added!'))
+    .then(() => res.json(newItem))
     .catch(err => res.status(400).json('Error: ' + err));
 }
 
