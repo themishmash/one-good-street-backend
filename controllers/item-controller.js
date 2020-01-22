@@ -8,7 +8,6 @@ const index = async (req, res) => {
         message: 'error no items'
       })
     } else {
-      console.log(datares);
       res.send(datares);
     }
     
