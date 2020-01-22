@@ -1,3 +1,6 @@
+//User controller that provides CRUD functionality only to admin users. This is so admin users can view, create, update and delete other users. 
+
+
 const User = require('../models/user-model');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');

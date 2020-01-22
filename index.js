@@ -1,3 +1,9 @@
+//Express framework required for nodeJS
+//Mongoose required managing relationships between data, provides schema validation and to translate between objects in code and the representation of those objects in MongoDB.
+//Cors required so allows cross-domain communication from the browser. 
+//Dotenv used to store passwords in .env files
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');

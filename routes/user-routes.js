@@ -1,4 +1,5 @@
-
+//User routes. 
+//Middleware required here so that it can be passed before the view, create, edit and delete routes thereby enabling only the admin to access and have CRUD functionality for users. 
 
 const express = require('express');
 const router = express.Router();
