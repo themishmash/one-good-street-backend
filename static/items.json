@@ -10,9 +10,10 @@
     "phone": 123456,
     "address": "124 Balwyn Road North Balwyn",
     "email": "albert@com.com",
-    "privacy": true,
+    "privacy": "publishDetails",
     "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/04/Ergonomic-Forearm-Crutches.png",
-    "delivery": true
+    "delivery": true,
+    "published": false
 },
 {
   "itemName": "Step Stool",
@@ -25,9 +26,10 @@
   "phone": 123456,
   "address": "1 Bourke Street Melbourne",
   "email": "betty@com.com",
-  "privacy": false,
+  "privacy": "publishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/07/Step-Stool-510x510.png",
-  "delivery": false
+  "delivery": false,
+  "published": false
 },
 {
   "itemName": "Massage Spikey Ball",
@@ -40,9 +42,10 @@
   "phone": 123456,
   "address": "1 Burke Road Hawthorn East",
   "email": "clare@com.com",
-  "privacy": true,
+  "privacy": "NotPublishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/08/MTT-AMASK1MRPB-spikey-massage-ball.png",
-  "delivery": false
+  "delivery": false,
+  "published": false
 },
 {
   "itemName": "Raised Toilet Seat with Swing Back Arms",
@@ -55,9 +58,10 @@
   "phone": 123456,
   "address": "1 Smith street Camberwell",
   "email": "dan@com.com",
-  "privacy": true,
+  "privacy": "NotPublishDetails",
   "image": "String",
-  "delivery": false
+  "delivery": false,
+  "published": false
 },
 {
   "itemName": "Bed Table – Days Overbed Table",
@@ -70,9 +74,10 @@
   "phone": 123456,
   "address": "1 Spring street Melbourne",
   "email": "elizabeth@com.com",
-  "privacy": true,
+  "privacy": "publishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/04/DAYS-OVERBED-TABLE.png",
-  "delivery": true
+  "delivery": true,
+  "published": true
 },
 {
   "itemName": "Shoehorn – Metal with PVC Grip",
@@ -85,9 +90,10 @@
   "phone": 123456,
   "address": "1 Whitehorse Road Balwyn",
   "email": "fran@com.com",
-  "privacy": true,
+  "privacy": "publishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/07/PAT-AA4606Y-METAL-SHOEHORN-WITH-PVC-GRIP.jpg",
-  "delivery": true
+  "delivery": true,
+  "published": true
 },
 {
   "itemName": "Standard Utility Chair",
@@ -100,9 +106,10 @@
   "phone": 123456,
   "address": "122 Sydney Road Brunswick",
   "email": "gary@gazza.com",
-  "privacy": true,
+  "privacy": "NotPublishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/07/Standard-Utility-Chair-Mocha-1.png",
-  "delivery": false
+  "delivery": false,
+  "published": true
 },
 {
   "itemName": "Angled Built-Up Cutlery",
@@ -115,9 +122,10 @@
   "phone": 123456,
   "address": "345 Rathdowne Street Carlton North",
   "email": "hazza@com.com",
-  "privacy": true,
+  "privacy": "NotPublishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/07/Queens-Angled-Built-Up-Cutlery.png",
-  "delivery": true
+  "delivery": true,
+  "published": true
 },
 {
   "itemName": "Transit Rollator – Use a Rollator or a transport Chair",
@@ -130,9 +138,10 @@
   "phone": 123456,
   "address": "2 Spots street Werribee",
   "email": "ingrid@com.com",
-  "privacy": false,
+  "privacy": "publishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/04/DAYS-2-in-1-Transit-Rollator-e1518746003925.jpg",
-  "delivery": false
+  "delivery": false,
+  "published": true
 },
 {
   "itemName": "M-Gel Achilles Heel Protection Sleeve",
@@ -145,9 +154,10 @@
   "phone": 123456,
   "address": "222 Swanston Street Melbourne",
   "email": "jess@com.com",
-  "privacy": true,
+  "privacy": "NotPublishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/08/gel-1400-m-m-gel-achilles-heel-protection-sleeve-e1519457440924.jpg",
-  "delivery": true
+  "delivery": true,
+  "published": true
 },
 {
   "itemName": "Therabeads Microwave Heat Pack",
@@ -160,8 +170,9 @@
   "phone": 123456,
   "address": "2 Footscray Road Footscray",
   "email": "kate@com.com",
-  "privacy": true,
+  "privacy": "publishDetails",
   "image": "https://www.agedcarestore.com.au/wp-content/uploads/2016/08/PAT-A61711-Therebeads-Microwave-Heat-Pack.jpg",
-  "delivery": false
+  "delivery": false,
+  "published": true
 }
 ]
