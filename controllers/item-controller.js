@@ -1,3 +1,6 @@
+//Item controller that provides viewing functionality.
+//Also provides CRUD functionality for admin user - the update and delete functions
+
 const Item = require('../models/item-model');
 const mongoose = require('mongoose');
 

@@ -1,3 +1,5 @@
+//Token middleware that checks users and their passwords
+
 let jwt = require( 'jsonwebtoken' );
 let checkToken = (req, res, next) =>
 {

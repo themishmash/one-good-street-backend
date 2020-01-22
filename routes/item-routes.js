@@ -1,9 +1,16 @@
+//Item routes 
+//Middleware required here so that it can be passed before the edit and delete routes thereby enabling only the admin to access it. 
+
 const express = require('express');
 const router = express.Router();
+
+
 const middleware = require('../routes/token_middleware');
+
+//CRUD functions of item-controller required here
 const { index, createItem, editItem, deleteItem, findOneItem } = require("../controllers/item-controller");
 
-//here we are going to create routes
+
 
 router.get('/', index);
 router.post('/create', createItem);

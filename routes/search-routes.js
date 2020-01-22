@@ -1,3 +1,5 @@
+//Search routes so items published can be searched by category and location
+
 const express = require('express');
 const router = express.Router();
 const { searchByCategory, searchByLocation } = require("../controllers/item-controller");
