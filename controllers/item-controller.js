@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 const index = async (req, res) => {
   const query = await Item.find({}, function(err, datares) { 
     if (err) {
-      res.send(404)
+      res.status(404).send({
+        message: 'error no items'
+      })
     } else {
+      console.log(datares);
       res.send(datares);
     }
     
   });
-
 
   return res;
 
