@@ -50,7 +50,7 @@ const createItem = (req, res) => {
 
 //admin functionality only - working
 const editItem = (req, res) => {
-  console.log("Edit id", id)
+  // console.log("Edit id", req.params.id)
   
   Item.findById(req.params.id)
     .then(item => {
