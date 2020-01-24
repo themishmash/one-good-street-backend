@@ -7,6 +7,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const morgan = require('morgan');
 
 require('dotenv').config();
 
@@ -30,6 +31,7 @@ mongoose.connect(process.env.DB_URL, dbConfig, (err) => {
 
 app.use(express.json());
 app.use(cors());
+app.use(morgan('dev'));
 
 //Connecting the routes
 app.use(require('./routes/index'));

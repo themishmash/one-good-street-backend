@@ -8,16 +8,18 @@ const router = express.Router();
 const middleware = require('../routes/token_middleware');
 
 //CRUD functions of item-controller required here
-const { index, createItem, editItem, deleteItem, findOneItem, publishItem } = require("../controllers/item-controller");
+const { index, createItem, editItem, deleteItem, findOneItem, togglePublished } = require("../controllers/item-controller");
 
 
 
 router.get('/', index);
 router.post('/create', createItem);
+router.put('/toggle-publish', togglePublished)
 router.put('/edit/:id', middleware.checkAdminToken, editItem) //routes tested and work
 router.delete('/delete/:id', middleware.checkAdminToken, deleteItem); //routes tested and work
 router.get('/:id', findOneItem);
-router.put('publish/:id', publishItem )
+
+
 
 
 module.exports = router;
