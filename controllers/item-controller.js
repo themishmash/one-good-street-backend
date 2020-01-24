@@ -65,10 +65,11 @@ const createItem = (req, res) => {
 
 const togglePublished = async (req, res) => {
   console.log('here')
-  // const foundItem = await Item.findById(req.body.id)
-  // const published = foundItem.published
-  // published ? foundItem.published = false : foundItem.published = true
-  // console.log(foundItem)
+  const foundItem = await Item.findById(req.body.id)
+  const published = foundItem.published
+  published ? foundItem.published = false : foundItem.published = true
+  await foundItem.save()
+  res.send(foundItem)
 }
 
 
