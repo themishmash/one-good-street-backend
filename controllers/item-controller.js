@@ -49,18 +49,26 @@ const createItem = (req, res) => {
 
 
 //Change published status
-const publishItem = (req, res) => {
+// const publishItem = (req, res) => {
   
-  Item.findById(req.params.id)
-    .then(item => {
+//   Item.findById(req.params.id)
+//     .then(item => {
       
-      item.published = req.body.published;
+//       item.published = req.body.published;
 
-      item.save()
-        .then(()=> res.json('Updated published status!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
+//       item.save()
+//         .then(()=> res.json('Updated published status!'))
+//         .catch(err => res.status(400).json('Error: ' + err));
+//     })
+//     .catch(err => res.status(400).json('Error: ' + err));
+// }
+
+const togglePublished = async (req, res) => {
+  console.log('here')
+  // const foundItem = await Item.findById(req.body.id)
+  // const published = foundItem.published
+  // published ? foundItem.published = false : foundItem.published = true
+  // console.log(foundItem)
 }
 
 
@@ -141,4 +149,4 @@ const searchByLocation = async (req, res) => {
 //   .catch(err => res.status(400).json('Error: ' + err));
 // }
 
-module.exports = { index, createItem, editItem, deleteItem, findOneItem, searchByCategory, searchByLocation, publishItem }
+module.exports = { index, createItem, editItem, deleteItem, findOneItem, searchByCategory, searchByLocation, togglePublished }
