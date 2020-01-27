@@ -91,6 +91,7 @@ const editItem = (req, res) => {
       item.email = req.body.email;
       item.privacy = req.body.privacy;
       item.delivery = req.body.delivery;
+      item.image = req.body.image;
       item.published = req.body.published;
 
       item.save()
