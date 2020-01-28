@@ -17,7 +17,6 @@ const index = async (req, res) => {
 }
 
 const createUser = (req, res) => {
-  console.log("Test...");
   const { firstName, lastName, email, password, isAdmin } = req.body;
 
     const newUser = new User({ 

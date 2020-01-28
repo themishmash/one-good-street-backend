@@ -49,7 +49,7 @@ const createItem = (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 
 
-//for nodemailer  
+//for nodemailer (and see below)
       const output = `
         <p>You have a new item to be published</p>
         <h3>Details</h3>
