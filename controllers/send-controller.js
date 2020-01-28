@@ -1,6 +1,3 @@
-const User = require('../models/user-model');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 
 const nodemailer = require('nodemailer')
 
@@ -16,20 +13,13 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-const involved = (req, res) => {
-  // const {firstName, lastName, address, email, phone, services} = req.body;
 
-  // const newInvolved = new Involved ({
-  //   firstName,
-  //   lastName,
-  //   address,
-  //   email,
-  //   phone,
-  //   services
-  // })
+//Get involved form
+
+const involved = (req, res) => { 
 
   const output = `
-        <p>You have a new Get involved </p>
+        <p>You have a new 'Get Involved' message </p>
         <h3>Details</h3>
         <ul>
           <li>First Name: ${req.body.firstName}</li>
@@ -46,7 +36,7 @@ const involved = (req, res) => {
       let mailOptions = {
         from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
         to: "onegoodst@gmail.com", // list of receivers
-        subject: `Get involved form about ${req.body.services}`, // Subject line
+        subject: `Get involved form - Services: ${req.body.services}`, // Subject line
         text: "Example", // plain text body
         html: output // html body
       };
@@ -62,4 +52,42 @@ const involved = (req, res) => {
 
 }
 
-module.exports = {involved}
+
+//Contact us form
+
+const contact = (req, res) => { 
+
+  const output = `
+        <p>You have a new 'Contact Us' message </p>
+        <h3>Details</h3>
+        <ul>
+          <li>Name: ${req.body.name}</li>
+          <li>Email ${req.body.email}</li>
+          <li>Message: ${req.body.message}</li>
+          </ul>
+       
+      `;
+      // setup email data with unicode symbols
+      let mailOptions = {
+        from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
+        to: "onegoodst@gmail.com", // list of receivers
+        subject: `Contact Us Form ${req.body.message}`, // Subject line
+        text: "Example", // plain text body
+        html: output // html body
+      };
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log("Message sent: %s", info.messageId);
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        res.render("ContactForm", { msg: "Email has been sent" });
+      });
+
+}
+
+
+
+
+module.exports = {involved, contact}
