@@ -4,6 +4,8 @@
 const Item = require('../models/item-model');
 const mongoose = require('mongoose');
 
+const nodemailer = require('nodemailer')
+
 const index = async (req, res) => {
   const query = await Item.find({}, function(err, datares) { 
     if (err) {
@@ -45,23 +47,50 @@ const createItem = (req, res) => {
   newItem.save()
     .then(() => res.json(newItem))
     .catch(err => res.status(400).json('Error: ' + err));
+
+
+//for nodemailer  
+      const output = `
+        <p>You have a new item to be published</p>
+        <h3>Details</h3>
+        <ul>
+          <li>Item Name: ${req.body.itemName}</li>
+          <li>Headline: ${req.body.headline}</li>
+          <li>Description: ${req.body.description}</li>
+          <li>Category: ${req.body.category}</li>
+          <li>Postcode: ${req.body.postcode}</li>
+          <li>First Name: ${req.body.firstName}</li>
+          <li>Last Name: ${req.body.lastName}</li>
+          <li>Phone: ${req.body.phone}</li>
+          <li>Address: ${req.body.address}</li>
+          <li>Email: ${req.body.email}</li>
+          <li>Privacy: ${req.body.privacy}</li>
+          <li>Image: ${req.body.image}</li>
+          <li>Delivery: ${req.body.delivery}</li>
+          </ul>
+       
+      `;
+      // setup email data with unicode symbols
+      let mailOptions = {
+        from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
+        to: "onegoodst@gmail.com", // list of receivers
+        subject: `${req.body.itemName}`, // Subject line
+        text: "Example", // plain text body
+        html: output // html body
+      };
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log("Message sent: %s", info.messageId);
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        res.render("ContactForm", { msg: "Email has been sent" });
+      });
+
 }
 
 
-//Change published status
-// const publishItem = (req, res) => {
-  
-//   Item.findById(req.params.id)
-//     .then(item => {
-      
-//       item.published = req.body.published;
-
-//       item.save()
-//         .then(()=> res.json('Updated published status!'))
-//         .catch(err => res.status(400).json('Error: ' + err));
-//     })
-//     .catch(err => res.status(400).json('Error: ' + err));
-// }
 
 const togglePublished = async (req, res) => {
   console.log('here')
@@ -150,5 +179,20 @@ const searchByLocation = async (req, res) => {
 //   .then(category => res.json(category))
 //   .catch(err => res.status(400).json('Error: ' + err));
 // }
+
+
+//Nodemailer
+let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  requireTLS: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_USER_PASS
+  }
+});
+
+
 
 module.exports = { index, createItem, editItem, deleteItem, findOneItem, searchByCategory, searchByLocation, togglePublished }
