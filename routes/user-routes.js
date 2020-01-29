@@ -9,7 +9,7 @@ const { index, createUser, editUser, deleteUser, findOneUser, login, dashboard }
 
 
 router.get('/', index); //go to production - CHANGE TO INCLUDE middleware here
-router.post('/create', createUser); //go to production - CHANGE TO INCLUDE in middleware here
+router.post('/create', middleware.checkAdminToken, createUser); //go to production - CHANGE TO INCLUDE in middleware here
 router.put('/edit/:id', middleware.checkAdminToken, editUser) //this works and will still salt password if edit
 router.delete('/delete/:id',  middleware.checkAdminToken, deleteUser); //this works for non admin 
 router.get('/dashboard', middleware.checkAdminToken, dashboard);
