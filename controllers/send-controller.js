@@ -28,7 +28,7 @@ const involved = (req, res) => {
           <li>Email: ${req.body.email}</li>
           <li>Phone: ${req.body.phone}</li>
           <li>Services: ${req.body.services}</li>
-          <li>Comments: ${req.body.comment}</li>
+          <li>Comments: ${req.body.comments}</li>
           </ul>
        
       `;
