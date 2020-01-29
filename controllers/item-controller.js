@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer')
 
 const index = async (req, res) => {
-  const query = await Item.find({}, function(err, datares) { 
+  const query = await Item.find({}, function (err, datares) {
     if (err) {
       res.status(404).send({
         message: 'error no items'
@@ -15,7 +15,7 @@ const index = async (req, res) => {
     } else {
       res.send(datares);
     }
-    
+
   });
 
   return res;
@@ -49,8 +49,8 @@ const createItem = (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 
 
-//for nodemailer (and see below)
-      const output = `
+  //for nodemailer (and see below)
+  const output = `
         <p>You have a new item to be published</p>
         <h3>Details</h3>
         <ul>
@@ -70,23 +70,23 @@ const createItem = (req, res) => {
           </ul>
        
       `;
-      // setup email data with unicode symbols
-      let mailOptions = {
-        from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
-        to: "onegoodst@gmail.com", // list of receivers
-        subject: `${req.body.itemName}`, // Subject line
-        text: "Example", // plain text body
-        html: output // html body
-      };
-      // send mail with defined transport object
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log("Message sent: %s", info.messageId);
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        res.render("ContactForm", { msg: "Email has been sent" });
-      });
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
+    to: "onegoodst@gmail.com", // list of receivers
+    subject: `${req.body.itemName}`, // Subject line
+    text: "Example", // plain text body
+    html: output // html body
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    res.status(200).send("your message has been sent");
+  });
 
 }
 
@@ -105,7 +105,7 @@ const togglePublished = async (req, res) => {
 //admin functionality only - working
 const editItem = (req, res) => {
   console.log("Edit id", req.body)
-  
+
   Item.findById(req.params.id)
     .then(item => {
       item.itemName = req.body.itemName;
@@ -124,7 +124,7 @@ const editItem = (req, res) => {
       item.published = req.body.published;
 
       item.save()
-        .then(()=> res.json('Item updated!'))
+        .then(() => res.json('Item updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

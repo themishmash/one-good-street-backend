@@ -16,7 +16,7 @@ let transporter = nodemailer.createTransport({
 
 //Get involved form
 
-const involved = (req, res) => { 
+const involved = (req, res) => {
 
   const output = `
         <p>You have a new 'Get Involved' message </p>
@@ -32,30 +32,30 @@ const involved = (req, res) => {
           </ul>
        
       `;
-      // setup email data with unicode symbols
-      let mailOptions = {
-        from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
-        to: "onegoodst@gmail.com", // list of receivers
-        subject: `Get involved form - Services: ${req.body.services}`, // Subject line
-        text: "Example", // plain text body
-        html: output // html body
-      };
-      // send mail with defined transport object
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log("Message sent: %s", info.messageId);
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        res.render("ContactForm", { msg: "Email has been sent" });
-      });
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
+    to: "onegoodst@gmail.com", // list of receivers
+    subject: `Get involved form - Services: ${req.body.services}`, // Subject line
+    text: "Example", // plain text body
+    html: output // html body
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    res.status(200).send("your message has been sent");
+  });
 
 }
 
 
 //Contact us form
 
-const contact = (req, res) => { 
+const contact = (req, res) => {
 
   const output = `
         <p>You have a new 'Contact Us' message </p>
@@ -67,27 +67,27 @@ const contact = (req, res) => {
           </ul>
        
       `;
-      // setup email data with unicode symbols
-      let mailOptions = {
-        from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
-        to: "onegoodst@gmail.com", // list of receivers
-        subject: `Contact Us Form ${req.body.message}`, // Subject line
-        text: "Example", // plain text body
-        html: output // html body
-      };
-      // send mail with defined transport object
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log("Message sent: %s", info.messageId);
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        res.render("ContactForm", { msg: "Email has been sent" });
-      });
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
+    to: "onegoodst@gmail.com", // list of receivers
+    subject: `Contact Us Form ${req.body.message}`, // Subject line
+    text: "Example", // plain text body
+    html: output // html body
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    res.status(200).send("your message has been sent");
+  });
 
 }
 
 
 
 
-module.exports = {involved, contact}
+module.exports = { involved, contact }
