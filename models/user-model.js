@@ -1,22 +1,9 @@
 //Schema for user objects
 
-
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
-
 const crypto = require('crypto');
-
 require('dotenv').config();
-
-// const myUniqueValidator = async (email) => {
-//   const doc = await User.findOne({email: email})
-//   if (doc) {
-//     return false
-//   } else {
-//     return true
-//   }
-// } 
 
 const userSchema = new Schema({
   firstName: {
@@ -30,7 +17,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true
-    // validate: [myUniqueValidator, "email must be unique"]
   },
   password:
   {
@@ -44,7 +30,6 @@ const userSchema = new Schema({
 },{
   timestamps: true
 });
-
 
 //using Cypto library here
 userSchema.methods.setPassword = function(password) {
