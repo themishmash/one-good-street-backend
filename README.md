@@ -469,16 +469,6 @@ These are the libraries we used for our project:
 * React-Tiny-Link
 * Redux-form
 
-### Demonstrates good code flow control for user stories
-
-
-
-### Applies Object Oriented (OO) principles/patterns
-This project used JavaScript which is an object orientated language. 
-
-
-
-### Uses appropriate data structures
 
 
 ## R3	Employ and utilise proper source control methodology (git)
@@ -534,7 +524,7 @@ Our application works and we communicated with Matiu via email and phone.
 Please see the screenshot below of some email correspondence. 
 
 Email correspondence
-![](docs/email-corresp-1.png)
+![](docs/email-corresp.png)
 ![](docs/email-corresp-2.png)
 
 ## R6	Deploy the application to a cloud hosting service
