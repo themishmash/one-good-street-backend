@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer')
 const { uuid } = require('uuidv4');
-
 const Request = require('../models/request-model');
 const User = require('../models/user-model')
 
@@ -39,14 +38,12 @@ const request = async (req, res) => {
         }
       });
 
-         
         const output = `
               <p>Click the following link to reset your password </p>
               <h3>Details</h3>
               <ul>
-                <a href="http://localhost:3000/password/reset/${uniquekey}">Click here!</a>
+                <a href="${process.env.NETLIFY_URL}" + "/password/reset/${uniquekey}">Click here!</a>
               </ul>
-             
             `;
         // setup email data with unicode symbols
         let mailOptions = {
@@ -66,14 +63,10 @@ const request = async (req, res) => {
           res.status(200).send("your message has been sent");
         });
       
-      
-
     } else {
       return res.status(400).json({success: false, message: "I can't find you."});
     }
-
   })
- 
 }
 
 const reset = async (req, res) => {
@@ -85,7 +78,6 @@ const reset = async (req, res) => {
         console.log(NowDay);
         console.log(doc.expirydate.getTime());
         if (NowDay < doc.expirydate.getTime()) {
-            // The yourDate time is less than 1 days from now
        
           console.log(doc.email);
           
@@ -100,7 +92,6 @@ const reset = async (req, res) => {
             .then(()=>{
               console.log("Updated the password.");
               res.status(200).json({success: true, message: "Successfully changed your password."});
-
             })
             .catch(err=>{
               console.log(err);
@@ -114,7 +105,6 @@ const reset = async (req, res) => {
     }
   })
 }
-
 
 
 module.exports = { request, reset }
