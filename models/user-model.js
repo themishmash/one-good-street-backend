@@ -9,14 +9,14 @@ const crypto = require('crypto');
 
 require('dotenv').config();
 
-const myUniqueValidator = async (email) => {
-  const doc = await User.findOne({email: email})
-  if (doc) {
-    return false
-  } else {
-    return true
-  }
-} 
+// const myUniqueValidator = async (email) => {
+//   const doc = await User.findOne({email: email})
+//   if (doc) {
+//     return false
+//   } else {
+//     return true
+//   }
+// } 
 
 const userSchema = new Schema({
   firstName: {
@@ -29,7 +29,8 @@ const userSchema = new Schema({
   {
     type: String,
     required: true,
-    validate: [myUniqueValidator, "email must be unique"]
+    unique: true
+    // validate: [myUniqueValidator, "email must be unique"]
   },
   password:
   {
