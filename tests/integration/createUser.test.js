@@ -25,7 +25,7 @@ afterEach(() => {
   mongoose.disconnect()
 })
 
-//testing users first - create a user with a new email. If errors - change to new email number. eg mich6@gmail.com
+//testing users first - create a user with a new email. 
 test('Test the /users/create endpoint, correct username and password', async () => {
   const { token } = JSON.parse(await login())
   const id = uuid();
