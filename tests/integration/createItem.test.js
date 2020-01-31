@@ -4,23 +4,30 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-//beforeEach is jest 
+//beforeEach is jest
 beforeEach(() => {
-  mongoose.connect('mongodb://localhost:27017/supertest',  {useNewUrlParser: true}, (err) => {
-    if (err) {
-      console.log('not connected')
-    } else {
-      console.log('connected')
+  mongoose.connect(
+    'mongodb://localhost:27017/supertest',
+    {useNewUrlParser: true},
+    (err) => {
+      if (err) {
+        console.log('not connected');
+      } else {
+        console.log('connected');
+      }
     }
-  })
+  );
+});
+
+afterEach(() => {
+  mongoose.disconnect()
 })
 
-//Create an item with. 
-test("Test the /items/create endpoint, correct itemName, headline, description, category, postcode, firstName, lastName, phone, address, email, privacy, delivery", async () => {
- 
+//Create an item with.
+test('Test the /items/create endpoint, correct itemName, headline, description, category, postcode, firstName, lastName, phone, address, email, privacy, delivery', async () => {
   await request(app)
-    .post('/users/create')
- 
+    .post('/items/create')
+
     .send({
       itemName: 'Wheelchair',
       headline: 'Test',
@@ -35,5 +42,5 @@ test("Test the /items/create endpoint, correct itemName, headline, description, 
       privacy: 'Publish my email and first name',
       delivery: true
     })
-    .expect(200)
-})
+    .expect(200);
+});

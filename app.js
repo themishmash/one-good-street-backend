@@ -12,4 +12,3 @@ app.use(morgan('dev'));
 app.use(require('./routes/index'));
 
 module.exports = app;
-

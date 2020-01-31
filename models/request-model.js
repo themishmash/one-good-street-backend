@@ -1,25 +1,24 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 require('dotenv').config();
 
-const requestSchema = new Schema({
-  
-  email: 
+const requestSchema = new Schema(
   {
-    type: String
+    email: {
+      type: String
+    },
+    uniquekey: {
+      type: String
+    },
+    expirydate: {
+      type: Date
+    }
   },
-  uniquekey:
   {
-    type: String
-  },
-  expirydate: 
-  {
-    type: Date
+    timestamps: true
   }
-},{
-  timestamps: true
-});
+);
 
-const Request = mongoose.model("Request", requestSchema);
+const Request = mongoose.model('Request', requestSchema);
 module.exports = Request;

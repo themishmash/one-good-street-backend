@@ -1,9 +1,8 @@
-
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 //Nodemailer
 let transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: 'smtp.gmail.com',
   port: 587,
   secure: false,
   requireTLS: true,
@@ -13,11 +12,9 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-
 //Get involved form
 
 const involved = (req, res) => {
-
   const output = `
         <p>You have a new 'Get Involved' message </p>
         <h3>Details</h3>
@@ -35,9 +32,9 @@ const involved = (req, res) => {
   // setup email data with unicode symbols
   let mailOptions = {
     from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
-    to: "onegoodst@gmail.com", // list of receivers
+    to: 'onegoodst@gmail.com', // list of receivers
     subject: `Get involved form - Services: ${req.body.services}`, // Subject line
-    text: "Example", // plain text body
+    text: 'Example', // plain text body
     html: output // html body
   };
   // send mail with defined transport object
@@ -45,18 +42,15 @@ const involved = (req, res) => {
     if (error) {
       return console.log(error);
     }
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    res.status(200).send("your message has been sent");
+    console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    res.status(200).send('your message has been sent');
   });
-
-}
-
+};
 
 //Contact us form
 
 const contact = (req, res) => {
-
   const output = `
         <p>You have a new 'Contact Us' message </p>
         <h3>Details</h3>
@@ -70,9 +64,9 @@ const contact = (req, res) => {
   // setup email data with unicode symbols
   let mailOptions = {
     from: `"One Good street" <${process.env.EMAIL_USER}>`, // sender address
-    to: "onegoodst@gmail.com", // list of receivers
+    to: 'onegoodst@gmail.com', // list of receivers
     subject: `Contact Us Form ${req.body.message}`, // Subject line
-    text: "Example", // plain text body
+    text: 'Example', // plain text body
     html: output // html body
   };
   // send mail with defined transport object
@@ -80,14 +74,10 @@ const contact = (req, res) => {
     if (error) {
       return console.log(error);
     }
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    res.status(200).send("your message has been sent");
+    console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    res.status(200).send('your message has been sent');
   });
+};
 
-}
-
-
-
-
-module.exports = { involved, contact }
+module.exports = {involved, contact};
