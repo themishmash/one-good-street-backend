@@ -1,11 +1,14 @@
 const request = require('supertest');
 const app = require('../../app');
 const mongoose = require('mongoose');
+const {login} = require('../utils/login');
 
 require('dotenv').config();
 
+describe('Testing mongoose', () => {
+
 //beforeEach is jest
-beforeEach(() => {
+beforeAll(() => {
   mongoose.connect(
     'mongodb://localhost:27017/supertest',
     {useNewUrlParser: true},
@@ -19,9 +22,10 @@ beforeEach(() => {
   );
 });
 
-afterEach(() => {
+afterAll(() => {
   mongoose.disconnect()
 })
+
 
 //Create an item
 test('Test the /items/create endpoint, correct itemName, headline, description, category, postcode, firstName, lastName, phone, address, email, privacy, delivery', async () => {
@@ -44,3 +48,36 @@ test('Test the /items/create endpoint, correct itemName, headline, description, 
     })
     .expect(200);
 });
+
+//get items
+test('Test the /items endpoint, return all items', async () => {
+  await request(app);
+
+  await request(app)
+    .get('/items')
+
+    .expect(200);
+});
+
+//get items by id
+test('Test the /items/:id endpoint, return item by id', async () => {
+  await request(app);
+  await request(app)
+    .get('/items/5e3393d16a349668aedaab52')
+
+    .expect(200); 
+});
+
+
+//edit items by id
+test('Edit the /items/:id endpoint, edit item by id', async () => {
+  const {token} = JSON.parse(await login());
+  console.log(token);
+  await request(app);
+  await request(app)
+    .put('/items/edit/5e3393d16a349668aedaab52')
+    .set('authorization', token)
+    .expect(200); 
+});
+
+})
