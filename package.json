@@ -12,13 +12,25 @@
     "mongoose": "^5.8.7",
     "morgan": "^1.9.1",
     "nodemailer": "^6.4.2",
+<<<<<<< HEAD
     "nodemon": "^2.0.2"
+=======
+    "nodemon": "^2.0.2",
+    "uuidv4": "^6.0.2"
+>>>>>>> afce9e1231634d27b8b0a44408ff2f5ead549fa0
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchAll",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "format": "prettier --write \"**/*.+(js)\""
   },
   "repository": "git@github.com:themishmash/one-good-street-backend.git",
-  "author": "Michelle <wong.mich.c@gmail.com>"
+  "author": "Michelle <wong.mich.c@gmail.com>",
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "supertest": "^4.0.2"
+  }
 }

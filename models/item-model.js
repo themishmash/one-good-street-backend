@@ -1,10 +1,11 @@
 //Schema for item objects
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const itemSchema = new Schema({
+const itemSchema = new Schema(
+  {
     itemName: String,
     headline: String,
     description: String,
@@ -19,11 +20,12 @@ const itemSchema = new Schema({
     image: String,
     delivery: Boolean,
     published: Boolean
-},
-{
+  },
+  {
     timestamps: true
-});
+  }
+);
 
-const Item = mongoose.model("Item", itemSchema);
+const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;

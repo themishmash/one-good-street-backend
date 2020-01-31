@@ -6,6 +6,7 @@
 
 # environment variables
 .env
+.env.development
 
 # logging
 *.log

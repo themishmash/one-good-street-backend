@@ -1,11 +1,10 @@
 //Express framework required for nodeJS
 //Mongoose required managing relationships between data, provides schema validation and to translate between objects in code and the representation of those objects in MongoDB.
-//Cors required so allows cross-domain communication from the browser. 
+//Cors required so allows cross-domain communication from the browser.
 //Dotenv used to store passwords in .env files
 
-
-const express = require('express');
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const cors = require('cors');
 <<<<<<< HEAD
 // const creds = require('dotenv').config();
@@ -14,27 +13,24 @@ const cors = require('cors');
 =======
 const morgan = require('morgan');
 >>>>>>> 84be92d6b40095f22272b50e360ce1bf8b6c1f82
+=======
+const app = require('./app');
+>>>>>>> afce9e1231634d27b8b0a44408ff2f5ead549fa0
 
 require('dotenv').config();
 
-
 const PORT = process.env.PORT || 5000;
-
-const app = express();
 
 //Mongoose
 
-const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true }
-
+const dbConfig = {useNewUrlParser: true, useUnifiedTopology: true};
 
 mongoose.connect(process.env.DB_URL, dbConfig, (err) => {
-    if (err)
-        console.error("Error ❌");
-    else
-        console.log("Connected to db ✅");
-
+  if (err) console.error('Error ❌');
+  else console.log('Connected to db ✅');
 });
 
+<<<<<<< HEAD
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
@@ -100,3 +96,6 @@ app.listen(PORT,
 //         }
 //     })
 // })
+=======
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+>>>>>>> afce9e1231634d27b8b0a44408ff2f5ead549fa0
