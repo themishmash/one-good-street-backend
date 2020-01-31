@@ -23,7 +23,7 @@ afterEach(() => {
   mongoose.disconnect()
 })
 
-//Create an item with.
+//Create an item
 test('Test the /items/create endpoint, correct itemName, headline, description, category, postcode, firstName, lastName, phone, address, email, privacy, delivery', async () => {
   await request(app)
     .post('/items/create')
