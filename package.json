@@ -18,13 +18,15 @@
   "scripts": {
     "test": "jest --watchAll",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "format": "prettier --write \"**/*.+(js)\""
   },
   "repository": "git@github.com:themishmash/one-good-street-backend.git",
   "author": "Michelle <wong.mich.c@gmail.com>",
   "devDependencies": {
     "@types/jest": "^25.1.1",
     "jest": "^25.1.0",
+    "prettier": "^1.19.1",
     "supertest": "^4.0.2"
   }
 }
