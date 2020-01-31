@@ -18,7 +18,6 @@ const index = async (req, res) => {
 
 const createUser = (req, res) => {
   const { firstName, lastName, email, password, isAdmin } = req.body;
-
     const newUser = new User({ 
       firstName,
       lastName,
@@ -30,7 +29,6 @@ const createUser = (req, res) => {
 
     //crypto function
     newUser.setPassword(password);
-
     newUser.save()
     .then(()=>res.json('User added!'))
     .catch(err=> res.status(400).json('Error: ' + err));

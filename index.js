@@ -4,17 +4,16 @@
 //Dotenv used to store passwords in .env files
 
 
-const express = require('express');
+
 const mongoose = require('mongoose');
-const cors = require('cors');
-const morgan = require('morgan');
+const app = require('./app');
 
 require('dotenv').config();
 
 
 const PORT = process.env.PORT || 5000;
 
-const app = express();
+
 
 //Mongoose
 
@@ -29,17 +28,9 @@ mongoose.connect(process.env.DB_URL, dbConfig, (err) => {
 
 });
 
-app.use(express.json());
-app.use(cors());
-app.use(morgan('dev'));
-
-//Connecting the routes
-app.use(require('./routes/index'));
-
 
 
 app.listen(PORT,
     () => console.log(`Listening on port ${PORT}`)
 );
 
-///why do i have to have mongodb in .env for it to work????
