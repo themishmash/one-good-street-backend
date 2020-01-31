@@ -53,13 +53,14 @@ let checkAdminToken = (req, res, next) =>
               req.headers['authorization'] || "";
   // An empty string allows the token to be treated as a string but will return false
 
-  console.log(token)
+
 
   if( token.startsWith( 'Bearer ' ) )
   {
     // Remove Bearer from string
     token = token.slice( 7, token.length );
   }
+
   if( token )
   {
     
@@ -68,7 +69,6 @@ let checkAdminToken = (req, res, next) =>
     {
       if( err )
       {
-        //console.error(err);
         
         return res.json(
         {
