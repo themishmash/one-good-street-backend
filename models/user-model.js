@@ -32,13 +32,13 @@ const userSchema = new Schema(
 );
 
 //using Cypto library here
-userSchema.methods.setPassword = function(password) {
+userSchema.methods.setPassword = function (password) {
   this.password = crypto
     .pbkdf2Sync(password, process.env.SALT, 1000, 64, `sha512`)
     .toString(`hex`);
 };
 
-userSchema.methods.validPassword = function(password) {
+userSchema.methods.validPassword = function (password) {
   const _password = crypto
     .pbkdf2Sync(password, process.env.SALT, 1000, 64, `sha512`)
     .toString(`hex`);
