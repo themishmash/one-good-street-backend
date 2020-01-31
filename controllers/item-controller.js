@@ -6,6 +6,20 @@ const mongoose = require('mongoose');
 
 const nodemailer = require('nodemailer');
 
+console.log(process.env.EMAIL_USER)
+
+//Nodemailer
+let transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  requireTLS: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_USER_PASS
+  }
+});
+
 const index = async (req, res) => {
   const query = await Item.find({}, function(err, datares) {
     if (err) {
@@ -20,7 +34,7 @@ const index = async (req, res) => {
   return res;
 };
 
-const createItem = (req, res) => {
+const createItem = async (req, res) => {
   console.log('Test...');
   const {
     itemName,
@@ -56,10 +70,10 @@ const createItem = (req, res) => {
 
   newItem.published = false;
 
-  newItem
+  await newItem
     .save()
-    .then(() => res.json(newItem))
-    .catch((err) => res.status(400).json('Error: ' + err));
+    // .then(() => res.json(newItem))
+    // .catch((err) => res.status(400).json('Error: ' + err));
 
   //for nodemailer (and see below)
   const output = `
@@ -93,7 +107,7 @@ const createItem = (req, res) => {
   // send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.log(error);
+      return console.log(error.message);
     }
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
@@ -183,18 +197,6 @@ const searchByLocation = async (req, res) => {
 //   .then(category => res.json(category))
 //   .catch(err => res.status(400).json('Error: ' + err));
 // }
-
-//Nodemailer
-let transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  requireTLS: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_USER_PASS
-  }
-});
 
 module.exports = {
   index,
