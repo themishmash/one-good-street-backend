@@ -21,12 +21,15 @@ Controllers are the link between models and views. They pass requests from the w
 
 Routes are where the routing code for the project is stored. It associates a HTTP verb such as GET, POST , PUT , DELETE with an URL path, and a function that is called to handle this path.
 
+The frontend is separated into various components which each attempt to serve a singular purpose. For example, the index.jsx file of the homepage renders the following components: a header, admin navbar, title, hero image, heat map, contact form and footer. The header component is further broken down to render a logo and navbar component. Static filler text has not been separated into components because they will not be reused or referred to elsewhere.
+
 
 ### Demonstrates DRY coding principles
-DRY coding principles were adhered to as much as possible throughout the project. For example, when we created a form for listing an item. We created a 'base' redux form component in the front end that is rendered for both the edit and create items forms. This 'base' form also contains validations. By having this 'base' form it allowed us to not repeat our code for both the create and edit forms as coding for these two components were very similar. 
+DRY coding principles were adhered to as much as possible throughout the project. For example, when we created a form for listing an item. We created a 'base' redux form component in the front end that is rendered for both the 'edit' and 'create' items forms. This 'base' form also contains validations. By having this 'base' form it allowed us to not repeat our code for both the create and edit forms, as coding for these two components were very similar. 
 
 Our base form - Form.jsx
-```
+
+```Javascript
 //This is the base form component for the edit and create item component. It renders for both edit and create
 //It calls on the 'handleSubmit' function that is like a middle-layer for this form's submit handlers - see index.jsx and createItem.jsx and editItem.jsx 
 //Form validations are handled here. 
@@ -206,7 +209,7 @@ export default reduxForm({ form: 'item', validate })(Form);
 ```
 
 Our create form
-```
+```Javascript
 //imports base Form.jsx here and renders the base form. 
 //This component is linked by the Button component that then links to this item (CreateItem component)
 
@@ -299,7 +302,7 @@ export default CreateItem;
 ```
 
 Our edit form
-```
+```Javascript
 //Calling base form component here in Form.jsx
 // This page is being rendered by clicking on the link in tableList.jsx
 
@@ -451,29 +454,29 @@ export default EditItem;
 
 ### Uses appropriate libraries
 These are the libraries we used for our project:
-* Cors
-* Crypto
-* Dotenv
-* jsonwebtoken
-* Morgan
-* Nodemailer
-* Nodemon
+* Cors - cross origin resource sharing
+* Crypto - password hashing for authentication purposes
+* Dotenv - to pass environment variables to Process.env
+* jsonwebtoken - to ensure uniqueness of tokens for authorization purposes
+* Morgan - HTTP request logger middleware
+* Nodemailer - to facilitate the sending of emails
+* Nodemon - to automate server restarts
 
-* Depcheck
-* Axios
-* Google-map-react
-* Moment
-* Font awesome
-* React-Router-Dom
-* React-Sliding-Panel
-* React-Tiny-Link
-* Redux-form
+* Depcheck - to ensure that unused packages & libraries were identified
+* Axios - to return promises after an HTTP request
+* Google-map-react - for the purpose of creating the Home page heat map
+* Moment - to quickly parse MongoDB datestamps into DD-MM-YYYY format
+* Font awesome - to add a Facebook and 'contact us' icon
+* React-Router-Dom - declarative routing for the Document Object Model
+* React-Sliding-Panel - to create a slide out contact form
+* React-Tiny-Link - to show a preview of a link for the Media & Events page
+* Redux-form - for easier state management of forms
 
 
 
 ## R3	Employ and utilise proper source control methodology (git)
 
-We used git repositories to store our source code. We made around 400 commits to both repositories. Please see the following links:
+We used git repositories to store our source code. We made around 400 commits total across both repositories. Please see the following links:
 
 ### Front end 'One Good Street' 
 https://github.com/mollymadden/one-good-street-frontend
@@ -519,7 +522,7 @@ Trello 20-1-20
 
 ## R5	Produce a working application that meets client and user needs
 
-Our application works and we communicated with Matiu via email and phone.
+Our application works as intended, and we communicated with Matiu Bush via email and phone.
 
 Please see the screenshot below of some email correspondence. 
 
@@ -528,7 +531,14 @@ Email correspondence
 ![](docs/email-corresp-2.png)
 
 ## R6	Deploy the application to a cloud hosting service
-Our application utilises MongoDB cloud, Cloudinary, Heroku and Netlify. 
+Our application utilises MongoDB cloud, Cloudinary, Heroku and Netlify.
+
+Heroku Backend:
+https://vast-headland-25884.herokuapp.com/items/
+(or /users)
+
+Netlify Frontend
+https://one-good-street.netlify.com/
 
 ## R7	Produce an application with an intuitive user interface
 
@@ -566,12 +576,13 @@ One Good Street - Admin Manage users
 
 ### Development testing 
 
-We wrote tests whilst in the development environment. It is found in the Cypress folder -> Integration -> one-good-street.
+We wrote several tests to the front end whilst in the development environment. It is found in the Cypress folder -> Integration -> one-good-street.
 
+We also added several tests to the back end using Supertest and Jest.
 
-Testing of creating item form
+Cypress testing of creating item form:
 
-```
+```Javascript
 //With validations
 
 //Create item
@@ -669,7 +680,7 @@ Please see this youtube recording of our site that is being hosted on Netlify.
 [One Good Street Production Testing](https://www.youtube.com/watch?v=Pv9xlRiM61E&feature=youtu.be)
 
 ## R9	Utilises a formal testing framework
-We used Cypress for testing. 
+We used Cypress for testing the front end and Supertest for testing the back end. 
 
 ## R10	A link (URL) to your deployed website
 
