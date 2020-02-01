@@ -1,9 +1,15 @@
+//Create, get and update (no delete)
+
 const request = require('supertest');
 const app = require('../../app');
 const mongoose = require('mongoose');
+const {login} = require('../utils/login');
+
+require('dotenv').config();
 
 describe('Testing mongoose', () => {
-  //beforeEach is jest
+
+//beforeEach is jest
 beforeAll(() => {
   mongoose.connect(
     'mongodb://localhost:27017/supertest',
@@ -22,26 +28,17 @@ afterAll(() => {
   mongoose.disconnect()
 })
 
-//get items
-test('Test the /items endpoint, return all items', async () => {
-  await request(app);
-
+//request password reset
+test('Test the request for resetting password route, make sure it works', async () => {
   await request(app)
-    .get('/items')
-
+    .post('/password/request')
+    .send({
+      email: 'mich@gmail.com'
+    })
     .expect(200);
 });
 
-//get items by id
-test('Test the /items/:id endpoint, return item by id', async () => {
-  await request(app);
 
-  await request(app)
-    .get('/items/5e3393d16a349668aedaab52')
 
-    .expect(200); //expected error
-});
 
-  
 })
-
