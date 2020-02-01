@@ -12,17 +12,40 @@ For our web app we implemented the following technologies:
 ## R2 Write well designed code that: Separates the program into modules that each deal with one particular focus, or concern; Demonstrates DRY (Don’t Repeat Yourself) coding principles; Uses appropriate libraries; Demonstrates good code flow control for user stories; Applies Object Oriented (OO) principles/patterns; Uses appropriate data structures
 
 ### Program separated into modules with one particular focus
-Program is separated into frontend and backend code. 
+Our program is separated into frontend and backend code. 
 
-The backend is further separated into controllers, models and routes. Controllers is where all the code goes for 
-Models here is where our schema is located. This is where Mongoose is used to translate between how the data object is represented in MongoDB and how it is represented in code.
+The backend is further separated into controllers, models and routes. Controllers is where all the code goes for application logic. Controllers are the link between models and views. They pass requests from the web browser, querying models for specific data and then pass the retrieved data to the views. For example in the item-controller.js, this is where the CRUD functionality for our Items model is found. Models manages the data of our program and is where our schema for creating objects is found. This is where Mongoose is used to translate between how the data object is represented in MongoDB and how it is represented in code. For example, our User model schema shows that data will be organised and stored in MongoDB based on this structure:
+```
+const userSchema = new Schema(
+  {
+    firstName: {
+      type: String
+    },
+    lastName: {
+      type: String
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String
+    },
+    isAdmin: {
+      type: Boolean,
+      default: true
+    }
+  },
+  {
+    timestamps: true
+  }
+);
+```
 
-Controllers are the link between models and views. They pass requests from the web browser, querying models for specific data and then pass the retrieved data to the views.
-
-Routes are where the routing code for the project is stored. It associates a HTTP verb such as GET, POST , PUT , DELETE with an URL path, and a function that is called to handle this path.
+Routes are where the routing code for the project is stored. It associates a HTTP verb such as GET, POST , PUT , DELETE with a URL path, and a function that is called to handle this path.
 
 The frontend is separated into various components which each attempt to serve a singular purpose. For example, the index.jsx file of the homepage renders the following components: a header, admin navbar, title, hero image, heat map, contact form and footer. The header component is further broken down to render a logo and navbar component. Static filler text has not been separated into components because they will not be reused or referred to elsewhere.
-
 
 ### Demonstrates DRY coding principles
 DRY coding principles were adhered to as much as possible throughout the project. For example, when we created a form for listing an item. We created a 'base' redux form component in the front end that is rendered for both the 'edit' and 'create' items forms. This 'base' form also contains validations. By having this 'base' form it allowed us to not repeat our code for both the create and edit forms, as coding for these two components were very similar. 
@@ -402,10 +425,7 @@ class EditItem extends React.Component {
       })
   }
 
-
   render() {
-
-
 
     if (localStorage.authToken) {
 
@@ -461,9 +481,9 @@ These are the libraries we used for our project:
 * Morgan - HTTP request logger middleware
 * Nodemailer - to facilitate the sending of emails
 * Nodemon - to automate server restarts
-* Jest & Supertest - for back end testing    
+* Jest & Supertest - for backend testing    
   
-* Cypress - for front end test
+* Cypress - for frontend testing
 * Depcheck - to ensure that unused packages & libraries were identified
 * Axios - to return promises after an HTTP request
 * Google-map-react - for the purpose of creating the Home page heat map
