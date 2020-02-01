@@ -461,7 +461,9 @@ These are the libraries we used for our project:
 * Morgan - HTTP request logger middleware
 * Nodemailer - to facilitate the sending of emails
 * Nodemon - to automate server restarts
-
+* Jest & Supertest - for back end testing    
+  
+* Cypress - for front end test
 * Depcheck - to ensure that unused packages & libraries were identified
 * Axios - to return promises after an HTTP request
 * Google-map-react - for the purpose of creating the Home page heat map
