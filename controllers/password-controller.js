@@ -20,8 +20,6 @@ const request = async (req, res) => {
         expirydate
       });
 
-      console.log(expirydate);
-
       newRequest
         .save()
         .then(() => res.json('New request added'))
@@ -72,13 +70,10 @@ const request = async (req, res) => {
 
 const reset = async (req, res) => {
   const {password, uniquekey} = req.body;
-  console.log('We are here...');
   await Request.findOne({uniquekey: uniquekey}).then((doc) => {
     const NowDay = new Date().getTime();
-    console.log(NowDay);
     console.log(doc.expirydate.getTime());
     if (NowDay < doc.expirydate.getTime()) {
-      console.log(doc.email);
 
       console.log('found the unique key');
       User.findOne({email: doc.email})

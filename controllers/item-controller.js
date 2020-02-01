@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 const nodemailer = require('nodemailer');
 
-console.log(process.env.EMAIL_USER)
 
 //Nodemailer
 let transporter = nodemailer.createTransport({
@@ -35,7 +34,7 @@ const index = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
-  console.log('Test...');
+ 
   const {
     itemName,
     headline,
@@ -116,7 +115,7 @@ const createItem = async (req, res) => {
 };
 
 const togglePublished = async (req, res) => {
-  console.log('here');
+
   const foundItem = await Item.findById(req.body.id);
   const published = foundItem.published;
   published ? (foundItem.published = false) : (foundItem.published = true);
@@ -126,7 +125,6 @@ const togglePublished = async (req, res) => {
 
 //admin functionality only - working
 const editItem = (req, res) => {
-  console.log('Edit id', req.body);
 
   Item.findById(req.params.id)
     .then((item) => {

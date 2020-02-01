@@ -1,3 +1,5 @@
+//Create, get and update (no delete)
+
 const request = require('supertest');
 const app = require('../../app');
 const mongoose = require('mongoose');
@@ -33,7 +35,7 @@ test('Test the /items/create endpoint, correct itemName, headline, description, 
     .post('/items/create')
 
     .send({
-      itemName: 'Wheelchair',
+      itemName: 'Chair',
       headline: 'Test',
       description: 'Test',
       category: 'Mobility',
@@ -59,23 +61,24 @@ test('Test the /items endpoint, return all items', async () => {
     .expect(200);
 });
 
+
+//GET NEW TOKEN
 //get items by id
 test('Test the /items/:id endpoint, return item by id', async () => {
-  await request(app);
   await request(app)
-    .get('/items/5e3393d16a349668aedaab52')
+    .get('/items/5e3394a5156576690207ab57')
 
     .expect(200); 
 });
 
 
-//edit items by id
-test('Edit the /items/:id endpoint, edit item by id', async () => {
+
+//delete items by id
+test('Delete the /items/delete/:id endpoint, delete item by id', async () => {
   const {token} = JSON.parse(await login());
   console.log(token);
-  await request(app);
   await request(app)
-    .put('/items/edit/5e3393d16a349668aedaab52')
+    .delete('/items/delete/5e3394a5156576690207ab57')
     .set('authorization', token)
     .expect(200); 
 });
