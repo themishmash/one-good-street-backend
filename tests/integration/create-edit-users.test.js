@@ -64,7 +64,7 @@ test('Test the /users/:id endpoint, return user by id', async () => {
     .expect(200); 
 });
 
-//edit user by id
+//edit user by id - not working
 test('Test the /users/edit/:id endpoint, edit user by id', async () => {
   const {token} = JSON.parse(await login());
   console.log(token);
@@ -77,15 +77,6 @@ test('Test the /users/edit/:id endpoint, edit user by id', async () => {
     .expect(200); 
 });
 
-//Delete user by id
-// test('Test the /users/delete/:id endpoint, edit user by id', async () => {
-//   const {token} = JSON.parse(await login());
-//   console.log(token);
-//   await request(app)
-//     .delete('/users/delete/5e33a1c3ee02f5731d1fbd35')
-//     .set('authorization', token)
-//     .expect(200); 
-// });
 
 
 })
