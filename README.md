@@ -45,7 +45,7 @@ const userSchema = new Schema(
 
 Routes are where the routing code for the project is stored. It associates a HTTP verb such as GET, POST , PUT , DELETE with a URL path, and a function that is called to handle this path.
 
-The frontend is separated into various components which each attempt to serve a singular purpose. For example, the index.jsx file of the homepage renders the following components: a header, admin navbar, title, hero image, heat map, contact form and footer. The header component is further broken down to render a logo and navbar component. Static filler text has not been separated into components because they will not be reused or referred to elsewhere.
+The frontend is separated into various components which each serve a singular purpose. For example, the index.jsx file of the homepage renders the following components: a header, admin navbar, title, hero image, heat map, contact form and footer. The header component is further broken down to render a logo and navbar component. Static filler text has not been separated into components because they will not be reused or referred to elsewhere.
 
 ### Demonstrates DRY coding principles
 DRY coding principles were adhered to as much as possible throughout the project. For example, when we created a form for listing an item. We created a 'base' redux form component in the front end that is rendered for both the 'edit' and 'create' items forms. This 'base' form also contains validations. By having this 'base' form it allowed us to not repeat our code for both the create and edit forms, as coding for these two components were very similar. 
@@ -455,8 +455,6 @@ class EditItem extends React.Component {
 
         <Form btnText={'Submit Edit'} onSubmit={this.handleEditItem} item={this.state} initialValues={this.state.itemData} showWidget={showWidget} />
 
-
-
       </div>
       );
     }
@@ -544,7 +542,12 @@ Trello 20-1-20
 
 ## R5	Produce a working application that meets client and user needs
 
-Our application works as intended, and we communicated with Matiu Bush via email and phone.
+Our application works as intended, and we communicated with Matiu Bush (our client) via email and phone. Some of the specific features he wished to see that we were able to implement include:
+* The form to list items to the Library of Care Things
+* Ability of users of the site to list items without signing in or signing up 
+* When an item is submitted to be published, Matiu gets an email notification and can review the listing before it is published
+* Administrators of the site have a clear login button
+* When an item is published, the person who listed the item has the option to be contacted directly instead of Matiu always being the main point of contact
 
 Please see the screenshot below of some email correspondence. 
 
@@ -598,9 +601,9 @@ One Good Street - Admin Manage users
 
 ### Development testing 
 
-We wrote several tests to the front end whilst in the development environment. It is found in the Cypress folder -> Integration -> one-good-street.
-
-We also added several tests to the back end using Supertest and Jest.
+We wrote several tests to the frontend and backend whilst in the development environment. We used Cypress for the frontend and Supertest and Jest for the backend.
+The frontend testing is found in the Cypress folder -> Integration -> one-good-street.
+The backend testing can be found in tests folder -> integration. 
 
 Cypress testing of creating item form:
 
@@ -693,6 +696,92 @@ describe("testing deleting item locally as admin user", function() {
 
 ```
 
+Supertest and Jest testing of some item end points
+```
+//Create, get and update (no delete)
+
+const request = require('supertest');
+const app = require('../../app');
+const mongoose = require('mongoose');
+const {login} = require('../utils/login');
+
+require('dotenv').config();
+
+describe('Testing mongoose', () => {
+
+//beforeEach is jest
+beforeAll(() => {
+  mongoose.connect(
+    'mongodb://localhost:27017/supertest',
+    {useNewUrlParser: true},
+    (err) => {
+      if (err) {
+        console.log('not connected');
+      } else {
+        console.log('connected');
+      }
+    }
+  );
+});
+
+afterAll(() => {
+  mongoose.disconnect()
+})
+
+
+//Create an item
+test('Test the /items/create endpoint, correct itemName, headline, description, category, postcode, firstName, lastName, phone, address, email, privacy, delivery', async () => {
+  await request(app)
+    .post('/items/create')
+
+    .send({
+      itemName: 'Wheelchair',
+      headline: 'Test',
+      description: 'Test',
+      category: 'Mobility',
+      postcode: '3000',
+      firstName: 'Molly',
+      lastName: 'Molly',
+      phone: 123456,
+      address: '123 Spencer Street',
+      email: 'com@com.com',
+      privacy: 'Publish my email and first name',
+      delivery: true
+    })
+    .expect(200);
+});
+
+//get items
+test('Test the /items endpoint, return all items', async () => {
+  await request(app)
+    .get('/items')
+    .expect(200);
+});
+
+//get items by id
+test('Test the /items/:id endpoint, return item by id', async () => {
+  await request(app)
+    .get('/items/5e3394016f002c68c7400431')
+    .expect(200); 
+
+});
+
+
+//edit items by id
+test('Edit the /items/edit/:id endpoint, edit item by id', async () => {
+  const {token} = JSON.parse(await login());
+  console.log(token);
+  await request(app)
+    .put('/items/edit/5e3394671b8b6268f1bd935e')
+    .set('authorization', token)
+    .expect(200); 
+});
+
+
+
+})
+```
+
 ### Production testing
 
 We tested our site manually in production. 
@@ -702,6 +791,7 @@ Please see this youtube recording of our site that is being hosted on Netlify.
 [One Good Street Production Testing](https://www.youtube.com/watch?v=Pv9xlRiM61E&feature=youtu.be)
 
 ## R9	Utilises a formal testing framework
+
 We used Cypress for automated testing of the front end and Supertest/Jest for testing the back end. 
 
 For the front end on localhost, we used Cypress automated testing on as many links as possible on each page, including the nav, admin nav, all buttons, contact form, facebook link, and all links nested in text. We also tested the functionality of nearly all forms and search fields, to the extent at which external intervention was required, such as in the case where a form sends an email via nodemailer that is required to complete a function (reset password, notify admin of new listing, etc.) Further, we tested the validation of all form fields, to ensure that email, phone number, and postcode fields received the correct type of data, as well as making sure that any form with a field marked as 'required' would not submit without these fields being completed.
@@ -709,6 +799,7 @@ For the front end on localhost, we used Cypress automated testing on as many lin
 We thoroughly tested the admin login function to ensure that only registered users could access restricted pages, and that the forms would not accept any invalid or null data.
 
 For the back end, we used Supertest to automate testing of CRUD functionality for both items and users. We also tested the routes of sending forms and requesting a password reset.
+
 
 ## R10	A link (URL) to your deployed website
 
@@ -721,3 +812,19 @@ https://github.com/mollymadden/one-good-street-frontend
 
 ### Back end 'One Good Street'
 https://github.com/themishmash/one-good-street-backend
+
+
+## Additional Information
+We had to submit our project a week earlier (ie we had two weeks to complete this task) as Molly starts working with REA group and Michelle has an overseas wedding to attend. 
+
+As a result, there are certainly some features we still wish to implement. This includes but is not limited to:
+* Input of location on the item form to autocomplete
+* Making the site more responsive for mobiles
+* CRUD functionality to pages for example giving administrators the ability to add to the Media & Events page
+* Render Google map that displays location on item show page
+* Widen postcode search function to return nearby postcodes and display suburb of relevant postcode
+* Adding an Events calendar
+
+We plan to meet with Matiu to show and demonstrate the website and if appropriate, to continue working on implementing some of these features as well as maintain the website. 
+
+
