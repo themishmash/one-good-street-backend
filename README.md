@@ -16,7 +16,8 @@ For our web app we implemented the following technologies:
 Our program is separated into frontend and backend code. 
 
 The backend is further separated into controllers, models and routes. Controllers is where all the code goes for application logic. Controllers are the link between models and views. They pass requests from the web browser, querying models for specific data and then pass the retrieved data to the views. For example in the item-controller.js, this is where the CRUD functionality for our Items model is found. Models manages the data of our program and is where our schema for creating objects is found. This is where Mongoose is used to translate between how the data object is represented in MongoDB and how it is represented in code. For example, our User model schema shows that data will be organised and stored in MongoDB based on this structure:
-```
+
+```Javascript
 const userSchema = new Schema(
   {
     firstName: {
