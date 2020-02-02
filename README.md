@@ -7,7 +7,7 @@ We completed this project in
 
 There are currently some known issues which are being addressed:
 When editing an item, the image does not persist.
-When deleting an item from the library, the image does not get removed from cloudinary.
+When deleting an item from the library, the image does not get removed from Cloudinary.
 
 ## R1 At a minimum use the following technologies: Mongo / Mongoose Express React.js Node.js
 For our web app we implemented the following technologies:
@@ -277,7 +277,7 @@ class CreateItem extends React.Component {
     handleCreateItem = (data) => {
         console.log(data);
 
-        //this is pushing the image url of cloudinary to mongodb and enables the image to then render on pages of the website
+        //this is pushing the image url of Cloudinary to mongodb and enables the image to then render on pages of the website
         data.image = this.state.image
         console.log('data image', data.image)
 
@@ -822,16 +822,20 @@ https://github.com/themishmash/one-good-street-backend
 
 
 ## Additional Information
-We had to submit our project a week earlier (ie we had two weeks to complete this task) as Molly starts working with REA group and Michelle has an overseas wedding to attend. 
+We had to submit our project a week earlier (ie we had two weeks to complete this task rather than the allotted three) as Molly starts working with REA group on 3 Feb and Michelle has a pre-arranged overseas wedding to attend on 4 Feb. 
 
-As a result, there are certainly some features we still wish to implement. This includes but is not limited to:
-* Input of location on the item form to autocomplete
-* Making the site more responsive for mobiles
-* CRUD functionality to pages for example giving administrators the ability to add to the Media & Events page
-* Render Google map that displays location on item show page
+As a result, there are certainly some features we still wish to implement. These include but are not limited to:
+* Input field of location on the item form to autocomplete using Google Places API
+* Making the site more responsive for mobile devices
+* CRUD functionality to other pages, for example giving administrators the ability to add to the Media & Events page without modifying the code
+* Render Google map that displays postcode location on item 'show' page
 * Widen postcode search function to return nearby postcodes and display suburb of relevant postcode
 * Adding an Events calendar
 
-We plan to meet with Matiu to show and demonstrate the website and if appropriate, to continue working on implementing some of these features as well as maintain the website. 
+There are currently some known issues which are being addressed:
+* There is not consistent component file naming conventions (lower case v upper case)
+* There are several warnings in the terminal around using emoji's without an alt tag
+* Accessibility consideration
 
 
+We plan to meet with Matiu Bush to show and demonstrate the website and if appropriate, to continue working on implementing some of these features as well as maintain the website. 
