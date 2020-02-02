@@ -695,14 +695,20 @@ describe("testing deleting item locally as admin user", function() {
 
 ### Production testing
 
-We tested our site in production. 
+We tested our site manually in production. 
 
 Please see this youtube recording of our site that is being hosted on Netlify.
 
 [One Good Street Production Testing](https://www.youtube.com/watch?v=Pv9xlRiM61E&feature=youtu.be)
 
 ## R9	Utilises a formal testing framework
-We used Cypress for testing the front end and Supertest for testing the back end. 
+We used Cypress for automated testing of the front end and Supertest/Jest for testing the back end. 
+
+For the front end on localhost, we used Cypress automated testing on as many links as possible on each page, including the nav, admin nav, all buttons, contact form, facebook link, and all links nested in text. We also tested the functionality of nearly all forms and search fields, to the extent at which external intervention was required, such as in the case where a form sends an email via nodemailer that is required to complete a function (reset password, notify admin of new listing, etc.) Further, we tested the validation of all form fields, to ensure that email, phone number, and postcode fields received the correct type of data, as well as making sure that any form with a field marked as 'required' would not submit without these fields being completed.
+
+We thoroughly tested the admin login function to ensure that only registered users could access restricted pages, and that the forms would not accept any invalid or null data.
+
+For the back end, we used Supertest to automate testing of CRUD functionality for both items and users. We also tested the routes of sending forms and requesting a password reset.
 
 ## R10	A link (URL) to your deployed website
 
