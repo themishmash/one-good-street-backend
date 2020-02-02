@@ -818,7 +818,7 @@ https://github.com/themishmash/one-good-street-backend
 
 
 ## Additional Information
-We had to submit our project a week earlier (ie we had two weeks to complete this task rather than the allotted three) as Molly starts working with REA group on 3 Feb and Michelle has a pre-arranged overseas wedding to attend on 4 Feb. 
+We had to submit our project a week earlier (ie we had two weeks to complete this task rather than the allotted three) as Molly starts working with REA Group on 3 Feb and Michelle has a pre-arranged overseas wedding to attend on 4 Feb. 
 
 As a result, there are certainly some features we still wish to implement. These include but are not limited to:
 * Input field of location on the item form to autocomplete using Google Places API
