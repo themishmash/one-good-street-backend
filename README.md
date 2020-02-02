@@ -699,7 +699,8 @@ describe("testing deleting item locally as admin user", function() {
 ```
 
 Supertest and Jest testing of some item end points
-```
+
+```Javascript
 //Create, get and update (no delete)
 
 const request = require('supertest');
