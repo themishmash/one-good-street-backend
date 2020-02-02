@@ -2,12 +2,6 @@
 ## One Good Street 
 A Web App by Molly Madden and Michelle Wong
 
-## Some notes
-We completed this project in 
-
-There are currently some known issues which are being addressed:
-When editing an item, the image does not persist.
-When deleting an item from the library, the image does not get removed from Cloudinary.
 
 ## R1 At a minimum use the following technologies: Mongo / Mongoose Express React.js Node.js
 For our web app we implemented the following technologies:
